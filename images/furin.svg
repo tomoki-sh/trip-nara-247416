@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 116">
+  <!-- 吊り紐 -->
+  <path d="M50 4 L50 20" fill="none" stroke="#b0873e" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="50" cy="4" r="3" fill="#b0873e"/>
+  <!-- ガラスの鐘（南部風鈴ではなく江戸風鈴のイメージ） -->
+  <path d="M22 56 C22 32 34 20 50 20 C66 20 78 32 78 56 Z"
+        fill="#cfe8f2" stroke="#4a8fae" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M22 56 q28 12 56 0" fill="#cfe8f2" stroke="#4a8fae" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- ガラスのハイライト -->
+  <path d="M33 50 C32 36 38 27 46 25" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+  <!-- 絵付け（朱の一筆） -->
+  <path d="M58 34 q8 5 9 14" fill="none" stroke="#c1432b" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  <!-- 舌（ぜつ） -->
+  <path d="M50 56 L50 72" fill="none" stroke="#1b4a6b" stroke-width="2.2" stroke-linecap="round"/>
+  <ellipse cx="50" cy="62" rx="5" ry="6" fill="#e8ddc4" stroke="#b0873e" stroke-width="1.6"/>
+  <!-- 短冊 -->
+  <rect x="42" y="72" width="16" height="36" rx="2" fill="#f4efe4" stroke="#b0873e" stroke-width="1.6"/>
+  <text x="50" y="97" text-anchor="middle" font-size="16" fill="#1b4a6b"
+        font-family="serif" font-weight="700">涼</text>
+</svg>

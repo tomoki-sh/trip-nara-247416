@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 検索エンジンに載せない（URL推測困難方式） -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#1b4a6b" />
+  <link rel="icon" type="image/svg+xml" href="images/furin.svg" />
+  <title>奈良ドライブ — 2026.8.2（おふさ観音 風鈴まつり）</title>
+
+  <!-- Leaflet (地図) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- 和フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <img class="hero-emblem" src="images/furin.svg" alt="風鈴" width="72" height="84" />
+      <p class="hero-kicker">奈良ドライブ・日帰り</p>
+      <h1 class="hero-title">おふさ観音 へ</h1>
+      <p class="hero-sub">2026年8月2日（日）／ 八尾 ⇄ 橿原・明日香（谷瀬は当日判断）</p>
+      <p class="hero-note">3,000個の風鈴が鳴る境内へ、涼をめぐる一日</p>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="セクション切替">
+    <button class="tab active" data-tab="schedule">🗓 スケジュール</button>
+    <button class="tab" data-tab="map">🗺 マップ</button>
+    <button class="tab" data-tab="spots">🌿 スポット</button>
+    <button class="tab" data-tab="restaurants">🍽 レストラン</button>
+    <button class="tab" data-tab="cafes">☕ カフェ</button>
+    <button class="tab" data-tab="routes">🚗 ルート</button>
+    <button class="tab" data-tab="packing">🎒 持ち物</button>
+    <button class="tab" data-tab="weather">☀️ 天気</button>
+    <button class="tab" data-tab="info">⚠️ 注意</button>
+  </nav>
+
+  <main class="container">
+    <!-- スケジュール -->
+    <section class="panel active" id="panel-schedule">
+      <h2 class="panel-title">スケジュール</h2>
+      <p class="panel-lead"><strong>確定：</strong>八尾 11:00 ピックアップ → 橿原でランチ → <strong>おふさ観音 風鈴まつり</strong> → 20:00までに八尾へ送り届け（目標19:00〜19:30）。<strong>谷瀬の吊り橋は14:15に当日判断</strong>、茶房おふさ・明日香の屋内施設は余裕があれば。下のリストは<strong>ドラッグで並び替え／時刻入力／確定・未確定の切替</strong>ができ、変更は<strong>同行者の端末にもリアルタイムで反映</strong>されます。</p>
+
+      <div class="sched-editor">
+        <div class="sched-legend">
+          <span class="st-chip confirmed">確定</span><span>11:00八尾発・おふさ観音・20:00までに帰着</span>
+          <span class="st-chip tentative">未確定</span><span>ランチの店・茶房おふさ・谷瀬・明日香の屋内（タップで切替）</span>
+        </div>
+        <div class="sched-cols">
+          <div class="sched-col">
+            <h4 class="sched-col-h">タイムスケジュール <span class="muted">ドラッグ並び替え・時刻入力・確定切替</span></h4>
+            <ol class="sched-list" id="sched-list"></ol>
+            <div class="sched-toolbar">
+              <select id="sched-add-place" class="sched-select"><option value="">＋ 候補から追加…</option></select>
+              <button class="btn-ghost" id="sched-add-row">＋ 空の行</button>
+              <button class="btn-ghost" id="sched-reset">おすすめ順に戻す</button>
+              <button class="btn-ghost" id="sched-clear">空にする</button>
+              <button class="btn-ghost" id="sched-save-plan">プラン例に保存</button>
+              <button class="btn-ghost" id="sched-export">共有用に書き出す</button>
+            </div>
+          </div>
+          <div class="sched-col">
+            <h4 class="sched-col-h">候補リスト <span class="muted">ドラッグ or ⊕ で左へ追加</span></h4>
+            <div class="sched-cand-tabs" id="sched-cand-tabs">
+              <button class="sched-cand-tab active" data-filter="all">すべて</button>
+              <button class="sched-cand-tab" data-filter="spots">🌿 スポット</button>
+              <button class="sched-cand-tab" data-filter="restaurants">🍽 レストラン</button>
+              <button class="sched-cand-tab" data-filter="cafes">☕ カフェ</button>
+            </div>
+            <ul class="sched-cand-list" id="sched-candidates"></ul>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sched-subhead">プラン例（参考）</h3>
+      <div id="schedule-content"></div>
+    </section>
+
+    <!-- マップ -->
+    <section class="panel" id="panel-map">
+      <h2 class="panel-title">マップ</h2>
+      <p class="panel-lead">ピンをタップで詳細。下のルート編集で訪問順を組み替えると、地図の点線とピン番号に即反映されます。</p>
+      <div class="map-filters" id="map-filters">
+        <div class="filter-group" data-group="type">
+          <span class="filter-label">種類</span>
+          <label class="chip"><input type="checkbox" value="spot" checked> 🌿 スポット</label>
+          <label class="chip"><input type="checkbox" value="restaurant" checked> 🍽 レストラン</label>
+          <label class="chip"><input type="checkbox" value="cafe" checked> ☕ カフェ</label>
+        </div>
+        <div class="filter-group" data-group="status">
+          <span class="filter-label">状態</span>
+          <label class="chip"><input type="checkbox" value="confirmed" checked> 確定</label>
+          <label class="chip"><input type="checkbox" value="tentative" checked> 未確定</label>
+        </div>
+        <div class="filter-group" data-group="route">
+          <span class="filter-label">ルート</span>
+          <label class="chip"><input type="checkbox" value="route-only"> ルート内のみ</label>
+        </div>
+      </div>
+      <div id="map"></div>
+
+      <!-- ルート編集 -->
+      <div class="route-editor">
+        <div class="route-editor-head">
+          <h3>ルート編集</h3>
+          <div class="route-actions">
+            <a class="btn-ghost btn-gmaps" id="route-gmaps" target="_blank" rel="noopener">🗺 Googleマップでルートを開く</a>
+            <button class="btn-ghost" id="route-reset">おすすめ順に戻す</button>
+            <button class="btn-ghost" id="route-clear">空にする</button>
+          </div>
+        </div>
+        <div class="route-cols">
+          <div class="route-col">
+            <h4>現在のルート <span class="muted">（ドラッグで並び替え）</span></h4>
+            <ol class="route-list" id="route-list"></ol>
+          </div>
+          <div class="route-col">
+            <h4>候補から追加 <span class="muted">（⊕ または ドラッグ）</span></h4>
+            <ul class="candidates-list" id="candidates-list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- スポット -->
+    <section class="panel" id="panel-spots">
+      <h2 class="panel-title">スポット</h2>
+      <p class="panel-lead">おふさ観音を軸に、谷瀬の吊り橋（当日判断）と、暑さ・疲労時に切り替える冷房のある屋内スポットを並べています。</p>
+      <div class="cards" id="cards-spots"></div>
+    </section>
+
+    <!-- レストラン -->
+    <section class="panel" id="panel-restaurants">
+      <h2 class="panel-title">レストラン</h2>
+      <p class="panel-lead">ランチ候補（今回は帰着条件からランチ中心）。<strong>点数は食べログ・Google（要直前確認）</strong>。終日ノンアルコール。<strong>エビ・カニを看板料理とする店は優先度を下げています</strong>。</p>
+      <div class="cards" id="cards-restaurants"></div>
+    </section>
+
+    <!-- カフェ -->
+    <section class="panel" id="panel-cafes">
+      <h2 class="panel-title">カフェ・休憩</h2>
+      <p class="panel-lead">おふさ観音の境内で休める茶房おふさが本命。明日香まで足を伸ばすなら古民家カフェのことだま。どちらも夏はかき氷・パフェ。</p>
+      <div class="cards" id="cards-cafes"></div>
+    </section>
+
+    <!-- ルート -->
+    <section class="panel" id="panel-routes">
+      <h2 class="panel-title">移動ルート</h2>
+      <p class="panel-lead">各区間の所要時間の目安（高速利用・休憩除く）。谷瀬へ向かう区間は当日の道路規制次第で大きく変わります。</p>
+      <div id="routes-content"></div>
+    </section>
+
+    <!-- 持ち物 -->
+    <section class="panel" id="panel-packing">
+      <h2 class="panel-title">持ち物チェックリスト</h2>
+      <p class="panel-lead">猛暑の日帰りドライブ向け。同行者の携行薬・予備食も忘れずに。チェックはこの端末に保存されます。</p>
+      <div id="packing-content"></div>
+    </section>
+
+    <!-- 天気 -->
+    <section class="panel" id="panel-weather">
+      <h2 class="panel-title">天気・7日予報</h2>
+      <p class="panel-lead">橿原・おふさ観音周辺の予報。旅行当日が範囲に入ると★強調＋降水確率・猛暑で分岐アドバイスを出します（Open-Meteo）。</p>
+      <div id="weather-content" class="weather-grid"><p class="muted">読み込み中…</p></div>
+      <div id="weather-alert" class="weather-alert"></div>
+    </section>
+
+    <!-- 注意 -->
+    <section class="panel" id="panel-info">
+      <h2 class="panel-title">注意・要確認</h2>
+      <div id="info-content"></div>
+    </section>
+  </main>
+
+  <!-- ライトボックス -->
+  <div id="lightbox" class="lightbox hidden" aria-hidden="true">
+    <button class="lb-close" id="lb-close" aria-label="閉じる">✕</button>
+    <button class="lb-prev" id="lb-prev" aria-label="前へ">‹</button>
+    <img class="lb-img" id="lb-img" alt="" />
+    <button class="lb-next" id="lb-next" aria-label="次へ">›</button>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
+
+  <footer class="foot">
+    <p>奈良ドライブ 2026.8.2 ／ 同行者と共有用（個人情報・予約番号は掲載しません）</p>
+    <p class="muted">写真: Googleマップ（Place Photos）より ／ 点数: 食べログ・Googleマップより（各社・投稿者に権利。私的共有の範囲で参照用）／ 地図: © OpenStreetMap contributors ／ 天気: Open-Meteo</p>
+    <details class="photo-credits">
+      <summary class="muted">Googleマップ写真の投稿者クレジット（65名）</summary>
+      <p class="muted">写真は Google マップの以下の投稿者・店舗提供によるものです（敬称略・順不同）: AUBERGE de SENVIE / Aさん / Barefoot Centipede / Fukky / HARU1005 / I “マルチーズ” B / Ko Ming / Kotsumi Chano / M KM / Mi / Mountain View / Mr.ロジャー / Restaurant Taka / Ryo HONDA / Sakura Wii / T / Taka / Tatuya Uemura / Yasunori Hirata / c c / caféことだま / hiroshi itaya / lion “David” lake / meda chan / mochi 111 / ms tkm / naotoshi takayama / non “6743” / t eccentric / takagoo / ÄSIくÁ / あられ / いい / おおすかまひと / おつのぶ / きーぼーあ / さとぼ / せせりポンズ（ゆず大根） / よしみよ / イコちゃん / イタリアンtoちょこっと和食En / ジョセフィーヌ正子 / スグル / スミレちゃん / ビストロラタトゥイユLa cuisine de “まほろば” / ホテル 奈良さくらいの郷 / 一幸 / 下西貴則 / 五條 源兵衛 / 大腰和則 / 天如 ランチ おばんざい / 実希 / 宮モンスター / 富沢貞之 / 将 / 山内一郎 / 山脇孝之 / 廖筱茜 / 建本秀樹（Dr. Hide） / 御ん坊 / 暇潰し勇 / 梅田先輩 / 梶本由美子 / 竹内昌弘 / 近鉄ファン</p>
+    </details>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js" defer></script>
+  <script src="app.js" defer></script>
+
+  <!-- Firebase リアルタイム同期（スケジュール・確定状態・ルートを全員で共有）
+       apiKey 等は秘密情報ではなく識別子。保護は Realtime Database のルール（匿名ログイン限定）で行う。 -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import { getDatabase, ref, onValue, set, get } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+    // 汎用プロジェクト travel-itinerary-sites を全旅行で共用。
+    // 旅行ごとの分離は app.js の DBパス（この旅行は "nara-trip"）で行う。大阪版は "trip"。
+    // apiKey等は公開してよい識別子（秘密鍵ではない）。保護は Realtime Database のルール（匿名ログイン限定）で行う。
+    const firebaseConfig = {
+      apiKey: "AIzaSyCeN_PFTYk0VSLitM8_S7YSJelYjqSkIzM",
+      authDomain: "travel-itinerary-sites.firebaseapp.com",
+      databaseURL: "https://travel-itinerary-sites-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "travel-itinerary-sites",
+      storageBucket: "travel-itinerary-sites.firebasestorage.app",
+      messagingSenderId: "933681618085",
+      appId: "1:933681618085:web:8b59a29239aaecfaec414c"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+    window.FB = { db, ref, onValue, set, get };
+    signInAnonymously(auth).catch(e => console.error("Firebase 匿名ログイン失敗（Authenticationの匿名を有効化してください）:", e));
+    onAuthStateChanged(auth, user => {
+      if (user && typeof window.startFirebaseSync === "function") window.startFirebaseSync();
+    });
+  </script>
+</body>
+</html>
