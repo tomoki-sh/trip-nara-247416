@@ -609,27 +609,27 @@ const DATA = {
     {
       warn: true,
       title: "国道168号の通行止め（谷瀬へ行くなら必読）",
-      text: "国道168号（十津川村平谷）が2026年6月29日から崩土で通行止め・復旧未定。平谷は谷瀬の吊り橋（上野地）より南のため、五條側からの往復には影響しない見込みだが確定情報が出ていない。<strong>当日朝と、おふさ観音を出る前に必ず奈良県道路情報とナビで再確認する。</strong>不明なら谷瀬は中止。"
+      text: "国道168号（十津川村平谷）が2026年6月29日から崩土で通行止め・復旧未定。平谷は谷瀬の吊り橋（上野地）より南のため、五條側からの往復には影響しない見込みだが確定情報が出ていない。**当日朝と、おふさ観音を出る前に必ず奈良県道路情報とナビで再確認する。**不明なら谷瀬は中止。"
     },
     {
       warn: true,
       title: "谷瀬の Go / No-Go 判断（14:15）",
-      text: "<strong>Go（全て満たす）:</strong> 14:15までにおふさ観音を出発できる／ナビの谷瀬到着予想が16:15以前／同行者が元気で行きたい／雨・雷・強風の懸念なし／国道168号に支障なし／八尾帰着予想が19:30前後まで。<strong>No-Go（1つでも該当）:</strong> 14:25を過ぎても出発できない／到着予想16:30以降／同行者が疲れている／悪天候／通行止め・大幅遅延／帰着20:00超。切替先は茶房おふさ・四神の館・博物館・早めの帰路。"
+      text: "**Go（全て満たす）:** 14:15までにおふさ観音を出発できる／ナビの谷瀬到着予想が16:15以前／同行者が元気で行きたい／雨・雷・強風の懸念なし／国道168号に支障なし／八尾帰着予想が19:30前後まで。**No-Go（1つでも該当）:** 14:25を過ぎても出発できない／到着予想16:30以降／同行者が疲れている／悪天候／通行止め・大幅遅延／帰着20:00超。切替先は茶房おふさ・四神の館・博物館・早めの帰路。"
     },
     {
       warn: true,
       title: "おふさ観音の駐車とナビ",
-      text: "<strong>ナビは「おふさ観音第2駐車場」で検索する。</strong>寺名だけで指定すると狭い道へ誘導される恐れがある。小房交差点では曲がらず、縄手町交差点側から進入する公式案内に従う。西5台・南5台・第2駐車場12台。通常無料だがイベント時500円の場合あり。入場は16:30まで・閉門17:00。"
+      text: "**ナビは「おふさ観音第2駐車場」で検索する。**寺名だけで指定すると狭い道へ誘導される恐れがある。小房交差点では曲がらず、縄手町交差点側から進入する公式案内に従う。西5台・南5台・第2駐車場12台。通常無料だがイベント時500円の場合あり。入場は16:30まで・閉門17:00。"
     },
     {
       warn: false,
       title: "8/2（日）の営業状況",
-      text: "主要候補の定休日は日曜と重ならない（五條源兵衛=火休／ことだま=火・第3水休／道の駅大塔=水休／橿原考古学研究所附属博物館=月休／夢市茶屋=無休）。ただし<strong>Enは不定休、茶房おふさも不定休</strong>のため、当日朝に営業を確認する。万葉文化館は展示替え休館の可能性があり公式確認を。"
+      text: "主要候補の定休日は日曜と重ならない（五條源兵衛=火休／ことだま=火・第3水休／道の駅大塔=水休／橿原考古学研究所附属博物館=月休／夢市茶屋=無休）。ただし**Enは不定休、茶房おふさも不定休**のため、当日朝に営業を確認する。万葉文化館は展示替え休館の可能性があり公式確認を。"
     },
     {
       warn: false,
       title: "帰着時間の設計",
-      text: "上限は20:00だが、<strong>実務上の目標は19:00〜19:30の八尾帰着</strong>。ユーザーは解散後さらに姫路まで運転するため、眠気があればサービスエリアで必ず休む。時間より安全を優先。"
+      text: "上限は20:00だが、**実務上の目標は19:00〜19:30の八尾帰着**。ユーザーは解散後さらに姫路まで運転するため、眠気があればサービスエリアで必ず休む。時間より安全を優先。"
     },
     {
       warn: false,
@@ -1145,9 +1145,100 @@ function renderPacking() {
     });
   });
 }
+/* ===== 注意・要確認（ブラウザから編集できる。誤タップ防止に編集モード制） ===== */
+const INFO_KEY = "nara-trip-info";
+const INFO_VERSION = 1;   // INFO_DEFAULT を更新したら必ず +1 する
+const INFO_DEFAULT = DATA.info;
+let infoItems = loadInfo();
+// 編集モードは保存しない：読み込み直後は必ず閲覧モード＝誤タップで書き換わらない
+let infoEditing = false;
+let infoSortable = null;
+
+function loadInfo() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(INFO_KEY));
+    if (raw && raw.v === INFO_VERSION && Array.isArray(raw.items)) return raw.items;
+  } catch (e) {}
+  return INFO_DEFAULT.map(x => ({ ...x }));
+}
+function saveInfo() {
+  localStorage.setItem(INFO_KEY, JSON.stringify({ v: INFO_VERSION, items: infoItems }));
+  fbPush("info", infoItems);
+}
+// 本文は **囲むと太字** だけ使える軽量記法。
+// 先にHTMLをエスケープしてから変換するので、利用者が < > を打っても壊れない／XSSにもならない。
+const infoText = (s) => esc(s).replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+
 function renderInfo() {
-  $("#info-content").innerHTML = DATA.info.map(i =>
-    `<div class="info-card ${i.warn ? "warn" : ""}"><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></div>`).join("");
+  const box = $("#info-content"); if (!box) return;
+  const panel = $("#panel-info");
+  if (panel) panel.classList.toggle("editing", infoEditing);
+  const btn = $("#info-edit-toggle");
+  if (btn) {
+    btn.textContent = infoEditing ? "✓ 編集を終える" : "✏️ 編集する";
+    btn.classList.toggle("on", infoEditing);
+  }
+
+  if (!infoEditing) {
+    box.innerHTML = infoItems.length
+      ? infoItems.map(i =>
+          `<div class="info-card ${i.warn ? "warn" : ""}"><h3>${esc(i.title)}</h3><p>${infoText(i.text)}</p></div>`).join("")
+      : `<p class="muted">項目がありません。「✏️ 編集する」→「＋ 項目を追加」で作成できます。</p>`;
+    if (infoSortable) { infoSortable.destroy(); infoSortable = null; }
+    return;
+  }
+
+  box.innerHTML = infoItems.map((it, i) => `
+    <div class="info-card edit ${it.warn ? "warn" : ""}" data-i="${i}">
+      <div class="info-edit-head">
+        <span class="info-handle" title="ドラッグで並び替え" aria-label="ドラッグして並び替え">≡</span>
+        <input class="info-title" type="text" data-i="${i}" value="${esc(it.title || "")}" placeholder="見出し" aria-label="見出し">
+        <button class="info-warn ${it.warn ? "on" : ""}" data-i="${i}" title="重要マーク（左の線が赤くなります）">${it.warn ? "⚠️ 重要" : "重要にする"}</button>
+        <button class="info-del" data-i="${i}" aria-label="この項目を削除" title="削除">✕</button>
+      </div>
+      <textarea class="info-text" data-i="${i}" rows="4" placeholder="内容を入力（**で囲むと太字）" aria-label="内容">${esc(it.text || "")}</textarea>
+    </div>`).join("")
+    || `<p class="muted">項目がありません。「＋ 項目を追加」で作成できます。</p>`;
+
+  // 入力中は再描画しない（カーソル位置とIME変換が飛ぶため）
+  $$("#info-content .info-title").forEach(el => el.addEventListener("input", e => {
+    infoItems[+e.currentTarget.dataset.i].title = e.currentTarget.value; saveInfo();
+  }));
+  $$("#info-content .info-text").forEach(el => el.addEventListener("input", e => {
+    infoItems[+e.currentTarget.dataset.i].text = e.currentTarget.value; saveInfo();
+  }));
+  $$("#info-content .info-warn").forEach(el => el.addEventListener("click", e => {
+    const it = infoItems[+e.currentTarget.dataset.i]; it.warn = !it.warn; saveInfo(); renderInfo();
+  }));
+  $$("#info-content .info-del").forEach(el => el.addEventListener("click", e => {
+    const i = +e.currentTarget.dataset.i;
+    if (!confirm(`「${infoItems[i].title || "（無題）"}」を削除しますか？`)) return;
+    infoItems.splice(i, 1); saveInfo(); renderInfo();
+  }));
+  setupInfoSortable();
+}
+
+function setupInfoSortable() {
+  if (typeof Sortable === "undefined" || !$("#info-content")) return;
+  if (infoSortable) infoSortable.destroy();
+  infoSortable = Sortable.create($("#info-content"), {
+    animation: 150, handle: ".info-handle", draggable: ".info-card",
+    ghostClass: "sortable-ghost", chosenClass: "sortable-chosen",
+    onEnd: () => {
+      infoItems = $$("#info-content .info-card").map(el => infoItems[+el.dataset.i]);
+      saveInfo(); renderInfo();
+    }
+  });
+}
+
+/* 現在の注意項目を INFO_DEFAULT 用のコード片として書き出す */
+function exportInfo() {
+  const lines = infoItems.map(it =>
+    `  {\n    warn: ${it.warn ? "true" : "false"},\n    title: ${JSON.stringify(it.title || "")},\n    text: ${JSON.stringify(it.text || "")}\n  }`
+  ).join(",\n");
+  const out = `/* app.js の DATA.info に貼り替え、INFO_VERSION を +1 */\ninfo: [\n${lines}\n],`;
+  if (navigator.clipboard) navigator.clipboard.writeText(out).catch(() => {});
+  window.prompt("下記を app.js の DATA.info に貼り替え、INFO_VERSION を +1 して commit すると、全員の初期表示が更新されます（クリップボードにもコピー済み）:", out);
 }
 
 /* =========================================================================
@@ -1514,12 +1605,16 @@ function applyRemote(d) {
   if (d.route && JSON.stringify(d.route) !== JSON.stringify(routeIds)) {
     routeIds = d.route; localStorage.setItem(ROUTE_KEY, JSON.stringify(routeIds)); changed = true;
   }
+  if (Array.isArray(d.info) && JSON.stringify(d.info) !== JSON.stringify(infoItems)) {
+    infoItems = d.info; localStorage.setItem(INFO_KEY, JSON.stringify({ v: INFO_VERSION, items: infoItems })); changed = true;
+  }
   applyingRemote = false;
   if (changed) rerenderAll();
 }
 // status/並び順/ルートに依存する全ビューを再描画
 function rerenderAll() {
   renderAllCards();
+  if ($("#info-content")) renderInfo();
   if (typeof renderSchedule === "function") renderSchedule();
   if ($("#sched-list")) renderScheduleEditor();
   if ($("#route-list")) renderRouteEditor();
@@ -1535,11 +1630,13 @@ window.startFirebaseSync = async function () {
     const d = snap.val();
     // コード側の初期バージョンが新しい（SCHED_DEFAULT/STATUS_DEFAULT を更新した）ら、
     // DB を現在のコードの初期値で作り直す（＝全員に配る初期表示の更新）。
-    if (!d || (d.schedVersion || 0) < SCHED_VERSION || (d.statusVersion || 0) < STATUS_VERSION) {
+    if (!d || (d.schedVersion || 0) < SCHED_VERSION || (d.statusVersion || 0) < STATUS_VERSION
+           || (d.infoVersion || 0) < INFO_VERSION) {
       await window.FB.set(tripRef, JSON.parse(JSON.stringify({
         schedule, schedVersion: SCHED_VERSION,
         status: statusToArray(), statusVersion: STATUS_VERSION,
-        route: routeIds
+        route: routeIds,
+        info: infoItems, infoVersion: INFO_VERSION
       })));
     }
     window.FB.onValue(tripRef, s => applyRemote(s.val()));
@@ -1587,6 +1684,19 @@ function init() {
   $("#sched-clear").addEventListener("click", () => { schedule = []; saveSchedule(); syncRouteFromSchedule(); renderScheduleEditor(); });
   $("#sched-save-plan").addEventListener("click", addCurrentScheduleAsPlan);
   $("#sched-export").addEventListener("click", exportSchedule);
+
+  // 注意タブの編集モード（誤タップ防止：既定は閲覧モード）
+  $("#info-edit-toggle").addEventListener("click", () => { infoEditing = !infoEditing; renderInfo(); });
+  $("#info-add").addEventListener("click", () => {
+    infoItems.push({ warn: false, title: "", text: "" });
+    saveInfo(); infoEditing = true; renderInfo();
+    const last = $$("#info-content .info-title").pop(); if (last) last.focus();
+  });
+  $("#info-reset").addEventListener("click", () => {
+    if (!confirm("注意タブを初期状態に戻しますか？（同行者の端末にも反映されます）")) return;
+    infoItems = INFO_DEFAULT.map(x => ({ ...x })); saveInfo(); renderInfo();
+  });
+  $("#info-export").addEventListener("click", exportInfo);
 }
 
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

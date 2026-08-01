@@ -175,6 +175,15 @@
     <!-- 注意 -->
     <section class="panel" id="panel-info">
       <h2 class="panel-title">注意・要確認</h2>
+      <p class="panel-lead">当日に気をつけることのメモ。<strong>「✏️ 編集する」を押すと</strong>、項目の追加・削除・並び替え・書き換えができます（変更は<strong>同行者の端末にもリアルタイムで反映</strong>されます）。本文で <code>**文字**</code> と書くと<strong>太字</strong>になります。</p>
+      <div class="info-toolbar">
+        <button class="btn-ghost" id="info-edit-toggle">✏️ 編集する</button>
+        <span class="edit-only">
+          <button class="btn-ghost" id="info-add">＋ 項目を追加</button>
+          <button class="btn-ghost" id="info-reset">初期状態に戻す</button>
+          <button class="btn-ghost" id="info-export">共有用に書き出す</button>
+        </span>
+      </div>
       <div id="info-content"></div>
     </section>
   </main>
