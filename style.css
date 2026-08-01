@@ -277,6 +277,11 @@ a { color: var(--ai); }
 }
 .rating-chip.tabelog { color: #b23121; }
 .rating-chip.google { color: #2c6cc9; }
+/* 点数チップをタップすると出典（食べログ／Googleマップ）へ飛ぶ */
+.rating-chip.is-link { text-decoration: none; cursor: pointer; transition: filter .15s, transform .1s; }
+.rating-chip.is-link::after { content: " ↗"; font-size: .8em; opacity: .55; }
+.rating-chip.is-link:hover { filter: brightness(.9); }
+.rating-chip.is-link:active { transform: scale(.97); }
 
 .card-desc { font-size: .9rem; color: #4d473d; margin: 0; }
 .card-meta { list-style: none; margin: 0; padding: 0; font-size: .82rem; color: #5c554a; }

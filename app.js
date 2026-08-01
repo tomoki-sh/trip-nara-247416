@@ -18,6 +18,7 @@ const DATA = {
       coords: [34.6297913, 135.6033559],
       category: "confirmed",
       images: ["images/yao.jpg", "images/yao_2.jpg"],
+      gmapsPlaceId: "ChIJ08SWbqkgAWARSpZ3KxbU75o",
       badges: [
         { text: "起終点", cls: "priority-top" }
       ],
@@ -40,6 +41,7 @@ const DATA = {
       coords: [34.503246, 135.79712],
       category: "confirmed",
       images: ["images/ofusa.jpg", "images/ofusa_2.jpg", "images/ofusa_3.jpg", "images/ofusa_4.jpg"],
+      gmapsPlaceId: "ChIJi0N6hy4zAWAR8ht26iV3PpQ",
       links: [
         { label: "風鈴まつり", url: "https://www.ofusa.jp/highlights/windbell" },
         { label: "交通アクセス", url: "https://www.ofusa.jp/access" }
@@ -68,6 +70,7 @@ const DATA = {
       coords: [34.101336, 135.762785],
       category: "warning",
       images: ["images/tanize.jpg", "images/tanize_2.jpg", "images/tanize_3.jpg", "images/tanize_4.jpg"],
+      gmapsPlaceId: "ChIJeyNmSm_vBmARHDQ4Zup5Qxw",
       links: [
         { label: "十津川村観光", url: "https://www.vill.totsukawa.lg.jp/traveling_guide/spot/view/" },
         { label: "奈良県道路情報", url: "https://www3.pref.nara.jp/road/" }
@@ -96,6 +99,7 @@ const DATA = {
       coords: [34.214188, 135.732953],
       category: "backup",
       images: ["images/michinoeki.png", "images/michinoeki_2.jpg", "images/michinoeki_3.jpg", "images/michinoeki_4.jpg"],
+      gmapsPlaceId: "ChIJn2SWVB_dBmARE8zepaWSl-4",
       links: [
         { label: "五條市の案内", url: "https://www.city.gojo.lg.jp/soshiki/kankoshinko/2_1/19359.html" }
       ],
@@ -122,6 +126,7 @@ const DATA = {
       coords: [34.45177, 135.805092],
       category: "backup",
       images: ["images/shijin.jpg", "images/shijin_2.jpg", "images/shijin_3.jpg", "images/shijin_4.jpg"],
+      gmapsPlaceId: "ChIJ0Z9WRkHMBmARhxMzB6jvgTw",
       links: [
         { label: "明日香村観光", url: "https://asukamura.com/sightseeing/kitora-shijin-no-yakata/" }
       ],
@@ -149,6 +154,7 @@ const DATA = {
       coords: [34.492125, 135.791457],
       category: "backup",
       images: ["images/kashikoken.jpg", "images/kashikoken_2.jpg", "images/kashikoken_3.jpg", "images/kashikoken_4.jpg"],
+      gmapsPlaceId: "ChIJK32pwdXMBmAROqmYO8QS1e4",
       links: [
         { label: "利用案内", url: "https://www.kashikoken.jp/museum/info/info.html" }
       ],
@@ -175,6 +181,7 @@ const DATA = {
       coords: [34.477404, 135.822966],
       category: "backup",
       images: ["images/manyo.jpg", "images/manyo_2.jpg", "images/manyo_3.jpg", "images/manyo_4.jpg"],
+      gmapsPlaceId: "ChIJbZh9xobMBmARGm0Wli34kWw",
       links: [
         { label: "公式サイト", url: "https://www.manyo.jp/" }
       ],
@@ -203,6 +210,7 @@ const DATA = {
       coords: [34.520115, 135.79852],
       category: "backup",
       images: ["images/en.jpg", "images/en_2.jpg", "images/en_3.jpg", "images/en_4.jpg"],
+      gmapsPlaceId: "ChIJJX114gYzAWARm7-1a2051HI",
       links: [
         { label: "公式サイト", url: "https://italian-en.owst.jp/" },
         { label: "ランチメニュー", url: "https://italian-en.owst.jp/lunches" },
@@ -235,13 +243,17 @@ const DATA = {
       coords: [34.521868, 135.817801],
       category: "backup",
       images: ["images/ratatouille.jpg", "images/ratatouille_2.jpg", "images/ratatouille_3.jpg", "images/ratatouille_4.jpg"],
+      gmapsPlaceId: "ChIJa009Ha4zAWARKm7md4T_onk",
       links: [
-        { label: "公式サイト", url: "https://la-ratatouille.com/nara/" }
+        { label: "公式サイト", url: "https://la-ratatouille.com/nara/" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2903/A290302/29012930/" }
       ],
       badges: [
         { text: "予算超過ぎみ", cls: "priority-alt" }
       ],
       ratings: {
+        tabelog: "3.30",
+        tabelogReviews: "45",
         google: "4.6",
         googleReviews: "65"
       },
@@ -262,6 +274,7 @@ const DATA = {
       coords: [34.467211, 135.824597],
       category: "backup",
       images: ["images/yumeichi.jpg", "images/yumeichi_2.jpg", "images/yumeichi_3.jpg", "images/yumeichi_4.jpg"],
+      gmapsPlaceId: "ChIJZ9pkv3nMBmARQGtEJdjAy2s",
       links: [
         { label: "公式サイト", url: "https://www.asukadeasobo.jp/visit/yumeichi/" },
         { label: "食べログ", url: "https://tabelog.com/nara/A2903/A290303/29000796/" }
@@ -292,7 +305,9 @@ const DATA = {
       coords: [34.349099, 135.693542],
       category: "backup",
       images: ["images/genbei.jpg", "images/genbei_2.jpg", "images/genbei_3.jpg", "images/genbei_4.jpg"],
+      gmapsPlaceId: "ChIJy2AqOyLRBmARjtOrORXpLHM",
       links: [
+        { label: "公式サイト", url: "https://genbei.info/" },
         { label: "ご予約", url: "https://genbei.info/reservation/" },
         { label: "お料理", url: "https://genbei.info/cuisine/" },
         { label: "食べログ", url: "https://tabelog.com/nara/A2905/A290501/29006074/" }
@@ -323,6 +338,7 @@ const DATA = {
       coords: [34.352924, 135.700107],
       category: "backup",
       images: ["images/yamato.jpg", "images/yamato_2.jpg", "images/yamato_3.jpg", "images/yamato_4.jpg"],
+      gmapsPlaceId: "ChIJp53d2BvRBmARxxh27gfeX6U",
       links: [
         { label: "公式サイト", url: "https://kakinoha.com/stores/gojo/" },
         { label: "食べログ", url: "https://tabelog.com/nara/A2905/A290501/29006336/" }
@@ -353,7 +369,10 @@ const DATA = {
       coords: [34.488483, 135.840544],
       category: "backup",
       images: ["images/sakurai.jpg", "images/sakurai_2.jpg", "images/sakurai_3.jpg", "images/sakurai_4.jpg"],
+      gmapsPlaceId: "ChIJi-guSlPLBmARFrBSxVsM-a8",
       links: [
+        { label: "公式サイト", url: "https://hotelnarasakurai.com/" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2903/A290302/29013349/" },
         { label: "カフェ・レストラン", url: "https://hotelnarasakurai.com/cafe" },
         { label: "館内案内", url: "https://hotelnarasakurai.com/guide" }
       ],
@@ -361,6 +380,8 @@ const DATA = {
         { text: "予約不要・低負担", cls: "priority-alt" }
       ],
       ratings: {
+        tabelog: "3.06",
+        tabelogReviews: "11",
         google: "4.4",
         googleReviews: "213"
       },
@@ -369,6 +390,7 @@ const DATA = {
         ["ランチ", "11:30〜15:30（L.O.14:30）"],
         ["価格", "1,800〜2,750円中心"],
         ["予約", "一般利用は不要"],
+        ["定休", "木曜（8/2は日曜のため営業）"],
         ["駐車", "28台"]
       ],
       notes: "<strong>予約不要で確実に入れる</strong>のが最大の利点。冷房・トイレ・休憩環境が整うので、暑さで消耗した日の切り札になる。ヤマトポーク・黒毛和牛ハンバーグ2,100円、九重御膳2,750円など。",
@@ -380,7 +402,9 @@ const DATA = {
       coords: [34.547631, 135.694292],
       category: "warning",
       images: ["images/taka.jpg", "images/taka_2.jpg", "images/taka_3.jpg", "images/taka_4.jpg"],
+      gmapsPlaceId: "ChIJhRBznKwvAWAROvRCmF6k_cw",
       links: [
+        { label: "公式サイト", url: "https://restaurant-taka.com/" },
         { label: "INFO", url: "https://restaurant-taka.com/info/" },
         { label: "CONCEPT", url: "https://restaurant-taka.com/concept/" }
       ],
@@ -408,7 +432,10 @@ const DATA = {
       coords: [34.489422, 135.839372],
       category: "warning",
       images: ["images/senvie.jpg", "images/senvie_2.jpg", "images/senvie_3.jpg", "images/senvie_4.jpg"],
+      gmapsPlaceId: "ChIJc_MHwVLLBmARAM3kGev2lVQ",
       links: [
+        { label: "公式サイト", url: "https://hirakawa-corp.com/senvie/" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2903/A290302/29014830/" },
         { label: "ランチ", url: "https://hirakawa-corp.com/senvie/restaurant/lunch/" },
         { label: "オープン案内", url: "https://hirakawa-corp.com/senvie/news/67/" }
       ],
@@ -416,6 +443,8 @@ const DATA = {
         { text: "完全予約制・予算超過", cls: "priority-warn" }
       ],
       ratings: {
+        tabelog: "3.10",
+        tabelogReviews: "6",
         google: "4.9",
         googleReviews: "32"
       },
@@ -435,24 +464,29 @@ const DATA = {
       coords: [34.536076, 135.717889],
       category: "warning",
       images: ["images/warigo.jpg", "images/warigo_2.jpg", "images/warigo_3.jpg", "images/warigo_4.jpg"],
+      gmapsPlaceId: "ChIJjQcyE5EvAWARaA9GV-a7h1Y",
       links: [
-        { label: "公式Instagram", url: "https://www.instagram.com/warigo_yuminosuke08/" }
+        { label: "公式Instagram", url: "https://www.instagram.com/warigo_yuminosuke08/" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2903/A290301/29012866/" }
       ],
       badges: [
         { text: "営業日は要確認", cls: "priority-warn" }
       ],
       ratings: {
+        tabelog: "3.10",
+        tabelogReviews: "10",
         google: "4.8",
         googleReviews: "21"
       },
-      desc: "香芝の小規模な個人店。評価は高いが営業日がSNS告知で、当日の予備店にはしにくい。",
+      desc: "香芝の小規模な個人店。評価は高いが、月に数日しか営業せず予約困難のため今回は現実的でない。",
       meta: [
-        ["営業", "SNSで告知・要確認"],
+        ["営業", "月に数日のみ・朝/昼/夜のいずれかに分けて営業"],
+        ["予約", "電話またはInstagramのDMのみ（予約困難）"],
         ["価格", "1,000〜2,000円程度（要確認）"],
         ["駐車", "専用駐車情報が乏しい"],
         ["八尾から", "約40分（橿原の手前）"]
       ],
-      notes: "<strong>要確認:</strong> 営業日・価格・駐車場が公式に確定できない。当日の飛び込みには向かない。",
+      notes: "<strong>今回は実質不可:</strong> 月に数日しか営業せず、予約も電話・DMのみで取りにくい。営業日はInstagramで告知される。当日の飛び込みには向かない。",
       maps: "ワリゴノアキヅ 香芝"
     },
     {
@@ -461,6 +495,7 @@ const DATA = {
       coords: [34.551273, 135.790588],
       category: "warning",
       images: ["images/tennyo.jpg", "images/tennyo_2.jpg", "images/tennyo_3.jpg", "images/tennyo_4.jpg"],
+      gmapsPlaceId: "ChIJ3_14MnA1AWAR0w1spLsruM0",
       links: [
         { label: "公式Instagram", url: "https://www.instagram.com/tawaramoto_tennnyo/" }
       ],
@@ -491,6 +526,7 @@ const DATA = {
       coords: [34.503808, 135.79706],
       category: "confirmed",
       images: ["images/sabo_ofusa.jpg", "images/sabo_ofusa_2.jpg", "images/sabo_ofusa_3.jpg", "images/sabo_ofusa_4.jpg"],
+      gmapsPlaceId: "ChIJV6v0ii4zAWARWHnheAIx-I0",
       links: [
         { label: "公式サイト", url: "https://www.ofusa.jp/highlights/tearoom" }
       ],
@@ -518,6 +554,7 @@ const DATA = {
       coords: [34.469752, 135.822663],
       category: "backup",
       images: ["images/kotodama.jpg", "images/kotodama_2.jpg", "images/kotodama_3.jpg", "images/kotodama_4.jpg"],
+      gmapsPlaceId: "ChIJ00ew3_jMBmARbxIlz3tsNnw",
       links: [
         { label: "公式サイト", url: "https://www.cafe-kotodama.com/" },
         { label: "予約について", url: "https://www.cafe-kotodama.com/about/reservation.html" },
@@ -713,6 +750,11 @@ const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const mapsUrl = (q) => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+// place_id があれば検索結果ではなく「その地点そのもの」を開く（同名店の取り違えを防ぐ）
+const placeMapsUrl = (p) => mapsUrl(p.maps || p.name) +
+  (p.gmapsPlaceId ? "&query_place_id=" + encodeURIComponent(p.gmapsPlaceId) : "");
+// 食べログURLは links から引く（DATAに二重で持たせない＝食い違いが起きない）
+const tabelogUrl = (p) => ((p.links || []).find(l => /食べログ|tabelog/i.test(l.label)) || {}).url || null;
 
 /* 全場所をフラットに（type 付き） */
 function allPlaces() {
@@ -799,13 +841,18 @@ function ratingChips(p) {
   if (!p.ratings) return "";
   const r = p.ratings, chips = [];
   const rev = (n) => n ? `（${esc(n)}件）` : "";
+  // 点数チップはタップで出典へ飛ぶ。食べログは links の食べログURL、Googleは place_id 付きマップURL。
+  // URLが無い地点は <span> のまま（リンク切れを作らない）。
+  const chip = (cls, label, url) => url
+    ? `<a class="rating-chip ${cls} is-link" href="${esc(url)}" target="_blank" rel="noopener">${label}</a>`
+    : `<span class="rating-chip ${cls}">${label}</span>`;
   // 飲食店は食べログ・Googleの両点数を件数つきで併記（§8-2）。google は Places API で取得。
-  if (r.tabelog) chips.push(`<span class="rating-chip tabelog">🍴 食べログ ${esc(r.tabelog)}${rev(r.tabelogReviews || r.reviews)}</span>`);
-  if (r.google)  chips.push(`<span class="rating-chip google">⭐ Google ${esc(r.google)}${rev(r.googleReviews)}</span>`);
+  if (r.tabelog) chips.push(chip("tabelog", `🍴 食べログ ${esc(r.tabelog)}${rev(r.tabelogReviews || r.reviews)}`, tabelogUrl(p)));
+  if (r.google)  chips.push(chip("google",  `⭐ Google ${esc(r.google)}${rev(r.googleReviews)}`, placeMapsUrl(p)));
   return chips.length ? `<div class="ratings">${chips.join("")}</div>` : "";
 }
 function linkPills(p) {
-  const pills = [`<a class="pill maps" href="${mapsUrl(p.maps || p.name)}" target="_blank" rel="noopener">📍 Googleマップ</a>`];
+  const pills = [`<a class="pill maps" href="${placeMapsUrl(p)}" target="_blank" rel="noopener">📍 Googleマップ</a>`];
   (p.links || []).forEach(l => {
     const cls = /食べログ|tabelog/i.test(l.label) ? "pill tabelog" : "pill";
     const icon = /食べログ/.test(l.label) ? "🍴" : "🔗";
@@ -1295,7 +1342,7 @@ function popupHtml(p, id) {
     <p class="p-desc">${esc(p.desc)}</p>
     <div class="p-actions">
       <button class="p-btn add" data-add="${esc(id)}">＋ルートに追加</button>
-      <a class="p-btn maps" href="${mapsUrl(p.maps || p.name)}" target="_blank" rel="noopener">📍マップ</a>
+      <a class="p-btn maps" href="${placeMapsUrl(p)}" target="_blank" rel="noopener">📍マップ</a>
     </div>
   </div>`;
 }
