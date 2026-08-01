@@ -397,6 +397,132 @@ const DATA = {
       maps: "ホテル奈良さくらいの郷"
     },
     {
+      name: "三輪山本 お食事処",
+      area: "桜井市箸中（大神神社の東）",
+      coords: [34.5395524, 135.8372459],
+      gmapsPlaceId: "ChIJ0Qk8CZo0AWARrVsQR8WnTII",
+      category: "backup",
+      images: ["images/miwayama.jpg", "images/miwayama_2.jpg", "images/miwayama_3.jpg", "images/miwayama_4.jpg"],
+      links: [
+        { label: "公式サイト", url: "https://www.miwayama.co.jp/dining" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2904/A290402/29000008/" }
+      ],
+      badges: [
+        { text: "点数最高・予約不要", cls: "priority-top" }
+      ],
+      ratings: {
+        tabelog: "3.71",
+        tabelogReviews: "563",
+        google: "4.3",
+        googleReviews: "718"
+      },
+      desc: "創業280年超の三輪そうめん老舗の直営店。極細麺「白髪」が名物で、今回の候補中で食べログ点数が最も高い。",
+      meta: [
+        ["営業", "11:00〜15:00（L.O.）"],
+        ["定休", "8/2は営業（夏季休業は8/10〜16）"],
+        ["価格", "冷やしそうめん900円／白髪990円／肉にゅうめん1,320円"],
+        ["予約", "不可（団体も不可）＝並べば入れる"],
+        ["駐車", "無料60台（観光バス10台）"],
+        ["おふさ観音から", "約25分"]
+      ],
+      notes: "<strong>今回の条件に最も合う。</strong>予約不要・駐車60台・短時間で食べられるので、<strong>谷瀬へ行く可能性を残したまま</strong>ご当地感のある昼食が取れる。ノンアルのみで完結。混雑時は待ちが出るため11:30頃までの到着が安全。",
+      maps: "三輪山本 お食事処 桜井"
+    },
+    {
+      name: "そうめん処 森正",
+      area: "桜井市三輪（大神神社 二ノ鳥居前）",
+      coords: [34.5292005, 135.8501513],
+      gmapsPlaceId: "ChIJB5XT_Mg0AWARF6p9WhJ09Yg",
+      category: "backup",
+      images: ["images/morisho.jpg", "images/morisho_2.jpg", "images/morisho_3.jpg", "images/morisho_4.jpg"],
+      links: [
+        { label: "公式サイト", url: "http://morishomiwa.net/" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2904/A290402/29000007/" }
+      ],
+      badges: [
+        { text: "古民家・雰囲気重視", cls: "priority-alt" }
+      ],
+      ratings: {
+        tabelog: "3.48",
+        tabelogReviews: "507",
+        google: "3.8",
+        googleReviews: "585"
+      },
+      desc: "大神神社の二ノ鳥居すぐ前の古民家。縁側と庭を眺めながら三輪そうめんを味わえる、雰囲気のある一軒。",
+      meta: [
+        ["営業", "日曜 9:30〜16:00"],
+        ["定休", "月・火（8/2は日曜のため営業）"],
+        ["価格", "冷やしそうめん1,050円／にゅうめん900円"],
+        ["予約", "不可"],
+        ["駐車", "<strong>専用なし</strong>（大神神社の参拝者駐車場を利用）"],
+        ["おふさ観音から", "約25分"]
+      ],
+      notes: "デート感・ご当地感は候補中で随一だが、<strong>専用駐車場がなく神社の駐車場から歩く</strong>。猛暑日は負担になるので、暑さが厳しければ駐車場が広い三輪山本の方が安全。",
+      maps: "そうめん処 森正 桜井"
+    },
+    {
+      name: "千寿亭（池利 三輪素麺茶屋）",
+      area: "桜井市芝",
+      coords: [34.532724, 135.8407343],
+      gmapsPlaceId: "ChIJKbvxQbw0AWAR4gqpLQeWdzk",
+      category: "backup",
+      images: ["images/senjutei.jpg", "images/senjutei_2.jpg", "images/senjutei_3.jpg", "images/senjutei_4.jpg"],
+      links: [
+        { label: "公式サイト", url: "https://www.ikeri.co.jp/senjyutei/" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2904/A290402/29000372/" }
+      ],
+      badges: [
+        { text: "予算帯にぴったり", cls: "priority-alt" }
+      ],
+      ratings: {
+        tabelog: "3.55",
+        tabelogReviews: "364",
+        google: "4.2",
+        googleReviews: "1018"
+      },
+      desc: "1850年創業の三輪そうめん「池利」直営の茶屋。三色そうめんと天ぷらの御膳が名物で、そうめん3店では最も食事らしい。",
+      meta: [
+        ["営業", "11:00〜16:00"],
+        ["定休", "金曜（8/2は日曜のため営業）"],
+        ["価格", "2,000〜2,999円（冷やし素麺三色 天ぷら付が人気）"],
+        ["予約", "<strong>8月は繁忙期のため予約不可</strong>"],
+        ["駐車", "無料30台"],
+        ["おふさ観音から", "約25分"]
+      ],
+      notes: "希望予算（ランチ2,000〜3,000円）にちょうど収まり、座敷もあって落ち着ける。そうめん単品より品数があるぶん<strong>三輪山本より滞在が長め</strong>なので、谷瀬へ行くなら三輪山本、外すならこちらが向く。",
+      maps: "千寿亭 桜井 三輪素麺"
+    },
+    {
+      name: "TIN TIN（ベトナム・タイ料理）",
+      area: "大阪市大正区三軒家西",
+      coords: [34.6653304, 135.4781949],
+      gmapsPlaceId: "ChIJs1cQmwPnAGARjO2qjcbkuZw",
+      category: "warning",
+      images: ["images/tintin.jpg", "images/tintin_2.jpg", "images/tintin_3.jpg", "images/tintin_4.jpg"],
+      links: [
+        { label: "食べログ", url: "https://tabelog.com/osaka/A2701/A270401/27132966/" }
+      ],
+      badges: [
+        { text: "奈良ルート外・駐車場なし", cls: "priority-warn" }
+      ],
+      ratings: {
+        tabelog: "3.22",
+        tabelogReviews: "20",
+        google: "4.7",
+        googleReviews: "212"
+      },
+      desc: "Google 4.7の高評価のベトナム・タイ料理店。日曜は11:00〜22:10の通し営業で、フォーなどノンアルでも楽しめる。",
+      meta: [
+        ["営業", "日曜 11:00〜22:10（通し）"],
+        ["価格", "昼1,000〜1,999円／夜2,000〜2,999円"],
+        ["予約", "可（電話 070-9072-3979）"],
+        ["駐車", "<strong>なし</strong>（コインパーキング要）"],
+        ["八尾から", "約20km・30〜40分（西方向）"]
+      ],
+      notes: "<strong>今回の奈良ルートからは外れる。</strong>大阪市大正区で、八尾より約20km西。奈良からの帰路とは逆方向のため、当日の昼食・夕食には組み込みにくい。<strong>駐車場が無い</strong>点も車の旅程とは相性が悪い。姫路からの往路に寄る、または別日の候補として。",
+      maps: "TIN TIN 大正区 三軒家西"
+    },
+    {
       name: "天如 ランチ☆おばんざい処",
       area: "磯城郡田原本町",
       coords: [34.551273, 135.790588],
@@ -577,6 +703,7 @@ const DATA = {
     { from: "近鉄八尾駅", to: "橿原（おふさ観音・En周辺）", time: "約50〜60分", note: "南阪奈道路〜大和高田バイパス経由。乗車前に車内を冷やす。" },
     { from: "ランチ（橿原）", to: "おふさ観音", time: "約10〜15分", note: "ナビは「おふさ観音第2駐車場」で指定。小房交差点では曲がらない。" },
     { from: "おふさ観音", to: "四神の館・明日香エリア", time: "約20分", note: "谷瀬を外した場合の本命。ことだま・万葉文化館・夢市茶屋も同エリア。" },
+    { from: "橿原（おふさ観音）", to: "桜井・三輪（そうめん3店）", time: "約25分", note: "三輪山本・森正・千寿亭はいずれも大神神社の周辺。ランチを先に取るなら八尾から直行しても約55分。" },
     { from: "おふさ観音", to: "道の駅 吉野路大塔", time: "約1時間10分", note: "谷瀬へ行く場合のみ。京奈和道〜国道168号。トイレ・運転休憩に使う。" },
     { from: "道の駅 吉野路大塔", to: "谷瀬の吊り橋", time: "約35分", note: "国道168号の山間部。出発前に道路規制を再確認。" },
     { from: "谷瀬の吊り橋", to: "近鉄八尾駅", time: "約2時間15分", note: "16:30出発厳守。渋滞時は20時に近づくため休憩を1回に絞る。" },
