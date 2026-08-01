@@ -397,99 +397,6 @@ const DATA = {
       maps: "ホテル奈良さくらいの郷"
     },
     {
-      name: "Restaurant Taka",
-      area: "香芝市逢坂",
-      coords: [34.547631, 135.694292],
-      category: "warning",
-      images: ["images/taka.jpg", "images/taka_2.jpg", "images/taka_3.jpg", "images/taka_4.jpg"],
-      gmapsPlaceId: "ChIJhRBznKwvAWAROvRCmF6k_cw",
-      links: [
-        { label: "公式サイト", url: "https://restaurant-taka.com/" },
-        { label: "INFO", url: "https://restaurant-taka.com/info/" },
-        { label: "CONCEPT", url: "https://restaurant-taka.com/concept/" }
-      ],
-      badges: [
-        { text: "日曜予約は金曜まで", cls: "priority-warn" }
-      ],
-      ratings: {
-        google: "4.9",
-        googleReviews: "15"
-      },
-      desc: "1日2組限定・奈良産食材のレストラン。特別感は高いが今回の予算と時間には合いにくい。",
-      meta: [
-        ["ランチ", "12:00一斉開始〜15:00"],
-        ["価格", "昼6,600円＋サービス料"],
-        ["定休", "月・火"],
-        ["予約", "前日まで／日曜分は金曜まで。当日不可"],
-        ["駐車", "1組1台"]
-      ],
-      notes: "<strong>今回は実質不可:</strong> 8/2（日）の予約は<strong>7/31（金）＝本日が締切</strong>。12〜15時固定のため谷瀬はほぼ不可能。別日の特別デート向き。",
-      maps: "Restaurant Taka 香芝"
-    },
-    {
-      name: "AUBERGE de SENVIE",
-      area: "桜井市高家",
-      coords: [34.489422, 135.839372],
-      category: "warning",
-      images: ["images/senvie.jpg", "images/senvie_2.jpg", "images/senvie_3.jpg", "images/senvie_4.jpg"],
-      gmapsPlaceId: "ChIJc_MHwVLLBmARAM3kGev2lVQ",
-      links: [
-        { label: "公式サイト", url: "https://hirakawa-corp.com/senvie/" },
-        { label: "食べログ", url: "https://tabelog.com/nara/A2903/A290302/29014830/" },
-        { label: "ランチ", url: "https://hirakawa-corp.com/senvie/restaurant/lunch/" },
-        { label: "オープン案内", url: "https://hirakawa-corp.com/senvie/news/67/" }
-      ],
-      badges: [
-        { text: "完全予約制・予算超過", cls: "priority-warn" }
-      ],
-      ratings: {
-        tabelog: "3.10",
-        tabelogReviews: "6",
-        google: "4.9",
-        googleReviews: "32"
-      },
-      desc: "奈良の伝統野菜を打ち出したオーベルジュ。地元農家の食材を使い、記念日向きの特別感がある。",
-      meta: [
-        ["ランチ", "12:00〜15:00・完全予約制"],
-        ["価格", "昼 5,500／7,700／11,000円"],
-        ["定休", "月・火"],
-        ["駐車", "12台"]
-      ],
-      notes: "<strong>今回は不可:</strong> 完全予約制のため当日利用不可。予算・時間とも今回の条件に合わない。別日の記念日ランチ向き。さくらいの郷の隣接地。",
-      maps: "AUBERGE de SENVIE 桜井"
-    },
-    {
-      name: "ワリゴノアキヅ",
-      area: "香芝市瓦口",
-      coords: [34.536076, 135.717889],
-      category: "warning",
-      images: ["images/warigo.jpg", "images/warigo_2.jpg", "images/warigo_3.jpg", "images/warigo_4.jpg"],
-      gmapsPlaceId: "ChIJjQcyE5EvAWARaA9GV-a7h1Y",
-      links: [
-        { label: "公式Instagram", url: "https://www.instagram.com/warigo_yuminosuke08/" },
-        { label: "食べログ", url: "https://tabelog.com/nara/A2903/A290301/29012866/" }
-      ],
-      badges: [
-        { text: "営業日は要確認", cls: "priority-warn" }
-      ],
-      ratings: {
-        tabelog: "3.10",
-        tabelogReviews: "10",
-        google: "4.8",
-        googleReviews: "21"
-      },
-      desc: "香芝の小規模な個人店。評価は高いが、月に数日しか営業せず予約困難のため今回は現実的でない。",
-      meta: [
-        ["営業", "月に数日のみ・朝/昼/夜のいずれかに分けて営業"],
-        ["予約", "電話またはInstagramのDMのみ（予約困難）"],
-        ["価格", "1,000〜2,000円程度（要確認）"],
-        ["駐車", "専用駐車情報が乏しい"],
-        ["八尾から", "約40分（橿原の手前）"]
-      ],
-      notes: "<strong>今回は実質不可:</strong> 月に数日しか営業せず、予約も電話・DMのみで取りにくい。営業日はInstagramで告知される。当日の飛び込みには向かない。",
-      maps: "ワリゴノアキヅ 香芝"
-    },
-    {
       name: "天如 ランチ☆おばんざい処",
       area: "磯城郡田原本町",
       coords: [34.551273, 135.790588],
@@ -715,11 +622,6 @@ const DATA = {
       text: "<strong>ナビは「おふさ観音第2駐車場」で検索する。</strong>寺名だけで指定すると狭い道へ誘導される恐れがある。小房交差点では曲がらず、縄手町交差点側から進入する公式案内に従う。西5台・南5台・第2駐車場12台。通常無料だがイベント時500円の場合あり。入場は16:30まで・閉門17:00。"
     },
     {
-      warn: true,
-      title: "Restaurant Taka は本日が予約締切",
-      text: "8/2（日）分の予約は<strong>金曜＝7/31（本日）まで</strong>。当日予約は不可。12:00一斉開始・15:00までの固定枠のため、利用すると谷瀬はほぼ不可能になり、予算も6,600円＋サービス料と今回の希望帯を超える。実質は別日向き。"
-    },
-    {
       warn: false,
       title: "8/2（日）の営業状況",
       text: "主要候補の定休日は日曜と重ならない（五條源兵衛=火休／ことだま=火・第3水休／道の駅大塔=水休／橿原考古学研究所附属博物館=月休／夢市茶屋=無休）。ただし<strong>Enは不定休、茶房おふさも不定休</strong>のため、当日朝に営業を確認する。万葉文化館は展示替え休館の可能性があり公式確認を。"
@@ -782,7 +684,7 @@ function placeIdByName(name) {
    「共有用に書き出す」で STATUS_DEFAULT に貼り替え＋STATUS_VERSION を +1 すれば全員反映。
    ========================================================================= */
 const STATUS_KEY = "nara-trip-status";
-const STATUS_VERSION = 1;   // STATUS_DEFAULT を更新したら必ず +1 する
+const STATUS_VERSION = 2;   // STATUS_DEFAULT を更新したら必ず +1 する
 // 全員に配る初期状態。空なら DATA の category から生成（confirmed→確定 / それ以外→未確定）。
 const STATUS_DEFAULT = {};
 function baseStatusMap() {
