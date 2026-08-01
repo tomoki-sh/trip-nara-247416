@@ -206,6 +206,7 @@ const DATA = {
   restaurants: [
     {
       name: "イタリアンtoちょこっと和食En",
+      genreKey: "yoshoku",
       genre: "🍝 イタリアン・和食",
       area: "橿原市葛本町",
       coords: [34.520115, 135.79852],
@@ -240,6 +241,7 @@ const DATA = {
     },
     {
       name: "ビストロラタトゥイユ La cuisine de まほろば",
+      genreKey: "yoshoku",
       genre: "🍴 フレンチ（ビストロ）",
       area: "橿原市常盤町（JAまほろばキッチン内）",
       coords: [34.521868, 135.817801],
@@ -272,6 +274,7 @@ const DATA = {
     },
     {
       name: "農村レストラン 夢市茶屋",
+      genreKey: "washoku",
       genre: "🍲 郷土料理（明日香の定食）",
       area: "明日香村島庄（石舞台近く）",
       coords: [34.467211, 135.824597],
@@ -304,6 +307,7 @@ const DATA = {
     },
     {
       name: "五條 源兵衛",
+      genreKey: "washoku",
       genre: "🍱 日本料理（町家）",
       area: "五條市本町（新町通り）",
       coords: [34.349099, 135.693542],
@@ -338,6 +342,7 @@ const DATA = {
     },
     {
       name: "柿の葉ずしヤマト 五條本店 大和鮨 夢宗庵",
+      genreKey: "washoku",
       genre: "🍣 寿司・柿の葉ずし",
       area: "五條市五條",
       coords: [34.352924, 135.700107],
@@ -370,6 +375,7 @@ const DATA = {
     },
     {
       name: "ホテル 奈良さくらいの郷",
+      genreKey: "yoshoku",
       genre: "🍽 洋食（ホテルレストラン）",
       area: "桜井市高家",
       coords: [34.488483, 135.840544],
@@ -404,6 +410,7 @@ const DATA = {
     },
     {
       name: "三輪山本 お食事処",
+      genreKey: "noodle",
       genre: "🍜 三輪そうめん",
       area: "桜井市箸中（大神神社の東）",
       coords: [34.5395524, 135.8372459],
@@ -437,6 +444,7 @@ const DATA = {
     },
     {
       name: "そうめん処 森正",
+      genreKey: "noodle",
       genre: "🍜 三輪そうめん",
       area: "桜井市三輪（大神神社 二ノ鳥居前）",
       coords: [34.5292005, 135.8501513],
@@ -470,6 +478,7 @@ const DATA = {
     },
     {
       name: "千寿亭",
+      genreKey: "noodle",
       genre: "🍜 三輪そうめん",
       area: "桜井市芝",
       coords: [34.532724, 135.8407343],
@@ -503,6 +512,7 @@ const DATA = {
     },
     {
       name: "一如庵",
+      genreKey: "noodle",
       genre: "🍜 そば・日本料理",
       area: "宇陀市榛原（橿原の東・山あい）",
       coords: [34.5199174, 135.9821864],
@@ -536,6 +546,7 @@ const DATA = {
     },
     {
       name: "森のレストラン ラッキーガーデン",
+      genreKey: "asian",
       genre: "🍛 スリランカカレー",
       area: "生駒市鬼取町（生駒山の中腹）",
       coords: [34.6697151, 135.6884495],
@@ -569,6 +580,7 @@ const DATA = {
     },
     {
       name: "TIN TIN",
+      genreKey: "asian",
       genre: "🥢 ベトナム・タイ料理",
       area: "大阪市大正区三軒家西",
       coords: [34.6653304, 135.4781949],
@@ -600,6 +612,7 @@ const DATA = {
     },
     {
       name: "天如 ランチ☆おばんざい処",
+      genreKey: "washoku",
       genre: "🍱 おばんざい・和食",
       area: "磯城郡田原本町",
       coords: [34.551273, 135.790588],
@@ -632,6 +645,7 @@ const DATA = {
   cafes: [
     {
       name: "茶房おふさ",
+      genreKey: "sweets",
       genre: "🍧 甘味処（かき氷）",
       area: "橿原市小房町（おふさ観音境内）",
       coords: [34.503808, 135.79706],
@@ -661,6 +675,7 @@ const DATA = {
     },
     {
       name: "caféことだま",
+      genreKey: "cafe",
       genre: "☕ 古民家カフェ",
       area: "明日香村岡",
       coords: [34.469752, 135.822663],
@@ -919,10 +934,106 @@ function rerenderStatus() {
   if (typeof map !== "undefined" && map) refreshMarkers();
   if ($("#sched-list")) renderScheduleEditor();
 }
+/* ===== レストラン／カフェの絞り込み・並び替え ===== */
+// 表示用の genre は店ごとに細かいので、絞り込みはこの粗い区分（genreKey）で行う
+const GENRE_GROUPS = [
+  ["noodle",  "🍜 麺類"],
+  ["washoku", "🍱 和食"],
+  ["yoshoku", "🍽 洋食"],
+  ["asian",   "🍛 アジア"],
+  ["sweets",  "🍧 甘味処"],
+  ["cafe",    "☕ カフェ"],
+];
+const CARD_SORTS = [
+  ["default", "おすすめ順"],
+  ["total",   "合計点数の高い順（食べログ＋Google）"],
+  ["tabelog", "食べログ点数の高い順"],
+  ["google",  "Google点数の高い順"],
+];
+const CARD_TABS = {
+  restaurants: { target: "#cards-restaurants", tools: "#tools-restaurants", type: "restaurant", items: () => DATA.restaurants },
+  cafes:       { target: "#cards-cafes",       tools: "#tools-cafes",       type: "cafe",       items: () => DATA.cafes },
+};
+// genres: null = 未初期化（初回に全選択にする）
+const cardView = { restaurants: { genres: null, sort: "default" }, cafes: { genres: null, sort: "default" } };
+
+const numOr = (v) => { const n = parseFloat(v); return isNaN(n) ? null : n; };
+// 合計は「片方しか無い店」も比較できるよう、欠けている側を0として足す（＝下に沈む）
+function cardScore(p, kind) {
+  const t = numOr(p.ratings && p.ratings.tabelog);
+  const g = numOr(p.ratings && p.ratings.google);
+  if (kind === "tabelog") return t;
+  if (kind === "google")  return g;
+  if (kind === "total")   return (t == null && g == null) ? null : (t || 0) + (g || 0);
+  return null;
+}
+function viewedItems(key) {
+  const v = cardView[key], all = CARD_TABS[key].items();
+  const list = all.filter(p => !v.genres || v.genres.has(p.genreKey || "other"));
+  if (v.sort === "default") return list;
+  // 元の並びを保った安定ソート。点数が無い店は末尾へ
+  return list.map((p, i) => ({ p, i })).sort((a, b) => {
+    const sa = cardScore(a.p, v.sort), sb = cardScore(b.p, v.sort);
+    if (sa == null && sb == null) return a.i - b.i;
+    if (sa == null) return 1;
+    if (sb == null) return -1;
+    return (sb - sa) || (a.i - b.i);
+  }).map(x => x.p);
+}
+
+function renderCardTools(key) {
+  const el = $(CARD_TABS[key].tools); if (!el) return;
+  const all = CARD_TABS[key].items();
+  const present = GENRE_GROUPS
+    .map(([k, label]) => [k, label, all.filter(p => (p.genreKey || "other") === k).length])
+    .filter(x => x[2] > 0);
+  const v = cardView[key];
+  if (!v.genres) v.genres = new Set(present.map(x => x[0]));
+
+  const chips = present.map(([k, label, n]) =>
+    `<label class="chip"><input type="checkbox" value="${k}" ${v.genres.has(k) ? "checked" : ""}> ${label}<span class="chip-n">${n}</span></label>`).join("");
+  const opts = CARD_SORTS.map(([k, l]) => `<option value="${k}"${v.sort === k ? " selected" : ""}>${esc(l)}</option>`).join("");
+  const shown = viewedItems(key).length;
+  el.innerHTML = `
+    <div class="filter-group">
+      <span class="filter-label">ジャンル</span>${chips}
+      <button class="btn-ghost card-tool-all">すべて表示</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">並び替え</span>
+      <select class="card-tool-sort" aria-label="並び替え">${opts}</select>
+      <span class="muted card-tool-count">${shown} / ${all.length}店</span>
+    </div>`;
+
+  $$(CARD_TABS[key].tools + " input[type=checkbox]").forEach(i => i.addEventListener("change", e => {
+    const set = cardView[key].genres, val = e.currentTarget.value;
+    e.currentTarget.checked ? set.add(val) : set.delete(val);
+    renderCardTab(key);
+  }));
+  $(CARD_TABS[key].tools + " .card-tool-all").addEventListener("click", () => {
+    cardView[key].genres = new Set(present.map(x => x[0]));
+    cardView[key].sort = "default";
+    renderCardTab(key);
+  });
+  $(CARD_TABS[key].tools + " .card-tool-sort").addEventListener("change", e => {
+    cardView[key].sort = e.currentTarget.value;
+    renderCardTab(key);
+  });
+}
+
+function renderCardTab(key) {
+  renderCardTools(key);
+  const t = CARD_TABS[key], list = viewedItems(key);
+  const box = $(t.target); if (!box) return;
+  box.innerHTML = list.length
+    ? list.map(p => renderCard({ ...p, type: t.type })).join("")
+    : `<p class="muted">条件に合う店がありません。「すべて表示」で戻せます。</p>`;
+}
+
 function renderAllCards() {
   renderCards("#cards-spots", DATA.spots, "spot");
-  renderCards("#cards-restaurants", DATA.restaurants, "restaurant");
-  renderCards("#cards-cafes", DATA.cafes, "cafe");
+  renderCardTab("restaurants");
+  renderCardTab("cafes");
 }
 
 /* =========================================================================
@@ -1863,9 +1974,7 @@ function init() {
   setupSchedCandTabs();
   populateSchedAddSelect();
   setupScheduleSortable();
-  renderCards("#cards-spots", DATA.spots, "spot");
-  renderCards("#cards-restaurants", DATA.restaurants, "restaurant");
-  renderCards("#cards-cafes", DATA.cafes, "cafe");
+  renderAllCards();   // スポット＋（絞り込み・並び替え付きの）レストラン／カフェ
   renderRoutes();
   renderPacking();
   renderInfo();

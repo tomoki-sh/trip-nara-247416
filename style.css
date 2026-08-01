@@ -328,6 +328,31 @@ a { color: var(--ai); }
 }
 .chip input { accent-color: var(--shu); }
 
+/* ===== レストラン／カフェの絞り込み・並び替えツールバー ===== */
+.card-tools {
+  display: flex; flex-wrap: wrap; gap: .5rem .9rem; align-items: center;
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: .6rem .7rem; margin-bottom: 1rem; box-shadow: var(--shadow);
+}
+.chip-n {
+  margin-left: .3rem; font-size: .72em; font-weight: 700; color: var(--muted);
+  background: var(--kinari-2); border-radius: 999px; padding: 0 .35em;
+}
+.chip:has(input:not(:checked)) { opacity: .5; }
+.card-tool-sort {
+  font: inherit; font-size: .8rem; color: var(--sumi);
+  border: 1px solid var(--line); border-radius: 999px; padding: .28rem .6rem;
+  background: #fff; max-width: 100%;
+}
+.card-tool-sort:focus { outline: 2px solid var(--ai-2); outline-offset: 1px; }
+.card-tool-all { font-size: .76rem; padding: .22rem .6rem; }
+.card-tool-count { white-space: nowrap; }
+@media (max-width: 520px) {
+  .card-tools { gap: .5rem; }
+  .card-tools .filter-group { width: 100%; }
+  .card-tool-sort { flex: 1 1 auto; }
+}
+
 /* Leaflet pin */
 .pin {
   width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
