@@ -206,6 +206,7 @@ const DATA = {
   restaurants: [
     {
       name: "イタリアンtoちょこっと和食En",
+      genre: "🍝 イタリアン・和食",
       area: "橿原市葛本町",
       coords: [34.520115, 135.79852],
       category: "backup",
@@ -239,6 +240,7 @@ const DATA = {
     },
     {
       name: "ビストロラタトゥイユ La cuisine de まほろば",
+      genre: "🍴 フレンチ（ビストロ）",
       area: "橿原市常盤町（JAまほろばキッチン内）",
       coords: [34.521868, 135.817801],
       category: "backup",
@@ -270,6 +272,7 @@ const DATA = {
     },
     {
       name: "農村レストラン 夢市茶屋",
+      genre: "🍲 郷土料理（明日香の定食）",
       area: "明日香村島庄（石舞台近く）",
       coords: [34.467211, 135.824597],
       category: "backup",
@@ -301,6 +304,7 @@ const DATA = {
     },
     {
       name: "五條 源兵衛",
+      genre: "🍱 日本料理（町家）",
       area: "五條市本町（新町通り）",
       coords: [34.349099, 135.693542],
       category: "backup",
@@ -334,6 +338,7 @@ const DATA = {
     },
     {
       name: "柿の葉ずしヤマト 五條本店 大和鮨 夢宗庵",
+      genre: "🍣 寿司・柿の葉ずし",
       area: "五條市五條",
       coords: [34.352924, 135.700107],
       category: "backup",
@@ -365,6 +370,7 @@ const DATA = {
     },
     {
       name: "ホテル 奈良さくらいの郷",
+      genre: "🍽 洋食（ホテルレストラン）",
       area: "桜井市高家",
       coords: [34.488483, 135.840544],
       category: "backup",
@@ -398,6 +404,7 @@ const DATA = {
     },
     {
       name: "三輪山本 お食事処",
+      genre: "🍜 三輪そうめん",
       area: "桜井市箸中（大神神社の東）",
       coords: [34.5395524, 135.8372459],
       gmapsPlaceId: "ChIJ0Qk8CZo0AWARrVsQR8WnTII",
@@ -430,6 +437,7 @@ const DATA = {
     },
     {
       name: "そうめん処 森正",
+      genre: "🍜 三輪そうめん",
       area: "桜井市三輪（大神神社 二ノ鳥居前）",
       coords: [34.5292005, 135.8501513],
       gmapsPlaceId: "ChIJB5XT_Mg0AWARF6p9WhJ09Yg",
@@ -461,7 +469,8 @@ const DATA = {
       maps: "そうめん処 森正 桜井"
     },
     {
-      name: "千寿亭（池利 三輪素麺茶屋）",
+      name: "千寿亭",
+      genre: "🍜 三輪そうめん",
       area: "桜井市芝",
       coords: [34.532724, 135.8407343],
       gmapsPlaceId: "ChIJKbvxQbw0AWAR4gqpLQeWdzk",
@@ -494,6 +503,7 @@ const DATA = {
     },
     {
       name: "一如庵",
+      genre: "🍜 そば・日本料理",
       area: "宇陀市榛原（橿原の東・山あい）",
       coords: [34.5199174, 135.9821864],
       gmapsPlaceId: "ChIJUb0bRZmzBmAR_r_wvsmEkc4",
@@ -526,6 +536,7 @@ const DATA = {
     },
     {
       name: "森のレストラン ラッキーガーデン",
+      genre: "🍛 スリランカカレー",
       area: "生駒市鬼取町（生駒山の中腹）",
       coords: [34.6697151, 135.6884495],
       gmapsPlaceId: "ChIJc6cmBvEjAWARIRTfrqF5M7s",
@@ -557,7 +568,8 @@ const DATA = {
       maps: "森のレストラン ラッキーガーデン 生駒"
     },
     {
-      name: "TIN TIN（ベトナム・タイ料理）",
+      name: "TIN TIN",
+      genre: "🥢 ベトナム・タイ料理",
       area: "大阪市大正区三軒家西",
       coords: [34.6653304, 135.4781949],
       gmapsPlaceId: "ChIJs1cQmwPnAGARjO2qjcbkuZw",
@@ -588,6 +600,7 @@ const DATA = {
     },
     {
       name: "天如 ランチ☆おばんざい処",
+      genre: "🍱 おばんざい・和食",
       area: "磯城郡田原本町",
       coords: [34.551273, 135.790588],
       category: "warning",
@@ -619,6 +632,7 @@ const DATA = {
   cafes: [
     {
       name: "茶房おふさ",
+      genre: "🍧 甘味処（かき氷）",
       area: "橿原市小房町（おふさ観音境内）",
       coords: [34.503808, 135.79706],
       category: "confirmed",
@@ -647,6 +661,7 @@ const DATA = {
     },
     {
       name: "caféことだま",
+      genre: "☕ 古民家カフェ",
       area: "明日香村岡",
       coords: [34.469752, 135.822663],
       category: "backup",
@@ -963,7 +978,10 @@ function renderCard(p) {
     ${renderImageBlock(p)}
     <div class="card-body">
       <h3 class="card-title">${esc(p.name)}</h3>
-      <div class="card-area">${esc(p.area)}</div>
+      <div class="card-sub">
+        ${p.genre ? `<span class="genre-chip">${esc(p.genre)}</span>` : ""}
+        <span class="card-area">${esc(p.area)}</span>
+      </div>
       ${badges ? `<div class="badges">${badges}</div>` : ""}
       ${ratingChips(p)}
       <p class="card-desc">${esc(p.desc)}</p>
@@ -1524,6 +1542,7 @@ function popupHtml(p, id) {
   return `<div class="popup-card">
     ${img}
     <h4>${esc(p.name)}</h4>
+    ${p.genre ? `<div class="p-genre">${esc(p.genre)}</div>` : ""}
     <div class="p-area">📍 ${esc(p.area)}</div>
     <p class="p-desc">${esc(p.desc)}</p>
     <div class="p-actions">

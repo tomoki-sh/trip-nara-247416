@@ -262,8 +262,21 @@ a { color: var(--ai); }
 
 .card-body { padding: .7rem .9rem 1rem; display: flex; flex-direction: column; gap: .5rem; }
 .card-title { margin: 0; font-size: 1.12rem; color: var(--ai); }
+.card-sub { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem .5rem; }
 .card-area { font-size: .8rem; color: #7a6f5c; }
 .card-area::before { content: "📍 "; }
+/* ジャンル（イタリアン・そうめん等）を一目で分かるように */
+.genre-chip {
+  flex: none; font-size: .76rem; font-weight: 700; line-height: 1.5;
+  padding: .1rem .55rem; border-radius: 999px;
+  background: var(--ai); color: var(--kinari);
+  letter-spacing: .02em; white-space: nowrap;
+}
+.popup-card .p-genre {
+  display: inline-block; font-size: .72rem; font-weight: 700;
+  padding: .05rem .45rem; border-radius: 999px;
+  background: var(--ai); color: var(--kinari); margin-bottom: .2rem;
+}
 .badges { display: flex; flex-wrap: wrap; gap: .3rem; }
 .badge { font-size: .7rem; font-weight: 700; padding: .12rem .5rem; border-radius: 999px; }
 .priority-top { background: var(--shu); color: #fff; }
