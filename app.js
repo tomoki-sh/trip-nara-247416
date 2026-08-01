@@ -545,6 +545,42 @@ const DATA = {
       maps: "一如庵 宇陀市榛原"
     },
     {
+      name: "焼肉三日月",
+      genreKey: "washoku",
+      genre: "🥩 焼肉",
+      area: "橿原市縄手町（おふさ観音の東すぐ）",
+      coords: [34.5054644, 135.8010061],
+      gmapsPlaceId: "ChIJAQDkoiEzAWARsNpJkVVvpHE",
+      category: "backup",
+      images: ["images/mikazuki.jpg", "images/mikazuki_2.jpg", "images/mikazuki_3.jpg", "images/mikazuki_4.jpg"],
+      links: [
+        { label: "公式サイト", url: "http://yakiniku-mikazuki.com/" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2903/A290302/29010073/" }
+      ],
+      badges: [
+        { text: "食べログ点数 最高", cls: "priority-top" },
+        { text: "おふさ観音から車2分", cls: "priority-alt" }
+      ],
+      ratings: {
+        tabelog: "3.76",
+        tabelogReviews: "386",
+        google: "4.0",
+        googleReviews: "207"
+      },
+      desc: "おふさ観音のすぐ東、縄手町にある焼肉店。今回の候補中で食べログ点数が最も高い（3.76）。年中無休に近く、17時開店なので早めの夕食に使える。",
+      meta: [
+        ["営業", "17:00〜23:00（L.O.22:30）"],
+        ["定休", "12/31〜1/3のみ（**8/2は営業**）"],
+        ["価格", "**6,000〜7,999円**（食べログ予算・昼夜とも）"],
+        ["予約", "可（50席）"],
+        ["駐車", "共用34台"],
+        ["おふさ観音から", "**約2分**（直線0.4km）"],
+        ["八尾まで", "約50〜60分"]
+      ],
+      notes: "<strong>「おふさ観音のあと、そのまま夕食」ができる唯一の候補。</strong>移動が実質ゼロなので、17:00に入って18:00に出れば<strong>19:00前後の八尾帰着</strong>という目標どおりの形に収まる。ただし<strong>予算は6,000〜7,999円</strong>と他の候補よりかなり高く、昼にしっかり食べた日には重い。ランチ営業は無いので<strong>夕食専用</strong>。谷瀬へ行った日は帰路が逆方向になるため使えない。",
+      maps: "焼肉三日月 橿原市縄手町"
+    },
+    {
       name: "森のレストラン ラッキーガーデン",
       genreKey: "asian",
       genre: "🍛 スリランカカレー",
@@ -609,6 +645,37 @@ const DATA = {
       ],
       notes: "<strong>今回の奈良ルートからは外れる。</strong>大阪市大正区で、八尾より約20km西。奈良からの帰路とは逆方向のため、当日の昼食・夕食には組み込みにくい。<strong>駐車場が無い</strong>点も車の旅程とは相性が悪い。姫路からの往路に寄る、または別日の候補として。",
       maps: "TIN TIN 大正区 三軒家西"
+    },
+    {
+      name: "小料理 奈良",
+      genreKey: "washoku",
+      genre: "🍶 小料理・創作おばんざい",
+      area: "奈良市三条大路（ミナーラ向かい）",
+      coords: [34.6832886, 135.8014775],
+      gmapsPlaceId: "ChIJX_IGKbI7AWARzYX8RfdoKtQ",
+      category: "warning",
+      images: ["images/koryori_nara.jpg", "images/koryori_nara_2.png", "images/koryori_nara_3.jpg", "images/koryori_nara_4.jpg"],
+      links: [
+        { label: "紹介記事（奈良グルメ図鑑）", url: "https://nara-gourmet.com/nara/" }
+      ],
+      badges: [
+        { text: "夜のみ・帰着が遅くなる", cls: "priority-warn" }
+      ],
+      ratings: {
+        google: "4.5",
+        googleReviews: "173"
+      },
+      desc: "自家菜園の旬野菜と季節の魚を使った創作おばんざいの小料理店。カウンターに大皿が並び、注文後に仕上げてくれる。Google 4.5と評価が高い。",
+      meta: [
+        ["営業", "17:30〜22:00（Googleの表示。22:30とする紹介記事もあり）"],
+        ["定休", "月・火（**8/2は日曜のため営業**。不定休との情報もあるので当日確認）"],
+        ["価格", "2人で5品＋ドリンク少々で**約6,000円**の実績（メニューに価格表記なし）"],
+        ["予約", "**推奨**（人気店）"],
+        ["駐車", "有"],
+        ["八尾まで", "**約40〜50分**（第二阪奈経由）"]
+      ],
+      notes: "<strong>時間の面では今回いちばん厳しい候補。</strong>開店が17:30で、そこから食事をすると<strong>19:00過ぎの出発→八尾20:00前後</strong>となり、目標の19:00〜19:30を確実に超える。上限の20:00にも触れる。<strong>解散後さらに姫路まで運転することを考えると、この日は勧めにくい。</strong>食べログには未掲載で、価格表記もないため会計が読みにくい点にも注意。奈良市街まで足を延ばす別日向き。",
+      maps: "小料理 奈良 三条大路"
     },
     {
       name: "天如 ランチ☆おばんざい処",
@@ -706,6 +773,41 @@ const DATA = {
       ],
       notes: "喫茶（14時以降）は予約不可・来店順。ランチは90分制で、席予約ができるのは11:00・11:30開始のみ。四神の館・夢市茶屋と同じ明日香エリアでまとめやすい。",
       maps: "caféことだま 明日香村"
+    },
+    {
+      name: "cafe komorebi（こもれ陽）",
+      genreKey: "cafe",
+      genre: "☕ ナチュラルカフェ",
+      area: "奈良市西紀寺町（ならまち南・京終）",
+      coords: [34.674374, 135.8328409],
+      gmapsPlaceId: "ChIJrzRUPgA5AWARrfBQdLh3c2I",
+      category: "warning",
+      images: ["images/komorebi.jpg", "images/komorebi_2.jpg", "images/komorebi_3.jpg", "images/komorebi_4.jpg"],
+      links: [
+        { label: "公式Instagram", url: "https://www.instagram.com/natural_cafe.komorebi" },
+        { label: "食べログ", url: "https://tabelog.com/nara/A2901/A290101/29014547/" }
+      ],
+      badges: [
+        { text: "Google 4.6（候補中最高）", cls: "priority-alt" },
+        { text: "今回のルートから外れる", cls: "priority-warn" }
+      ],
+      ratings: {
+        tabelog: "3.17",
+        tabelogReviews: "17",
+        google: "4.6",
+        googleReviews: "62"
+      },
+      desc: "ならまち南・京終エリアの小さなナチュラルカフェ。Google 4.6は今回の候補中で最高評価だが、口コミ件数は62件と少なめ。",
+      meta: [
+        ["営業", "11:00〜18:00"],
+        ["定休", "火曜・隔週水曜（**8/2は日曜のため営業**）"],
+        ["価格", "1,000〜1,999円（昼）"],
+        ["予約", "可"],
+        ["駐車", "**なし**（コインパーキング要）"],
+        ["おふさ観音から", "**約35〜40分**（北へ直線19km）"]
+      ],
+      notes: "<strong>評価は高いが、今回の行程からは北へ大きく外れる。</strong>おふさ観音（橿原）から奈良市街まで往復すると1時間以上を使うため、谷瀬に行く日はもちろん、外した日でも組み込みにくい。<strong>駐車場が無く</strong>コインパーキングを探す必要がある点も、車の旅程とは相性が悪い。往路に八尾から直行する形なら成立するが、その場合はおふさ観音の到着が遅れる。",
+      maps: "cafe komorebi 奈良市西紀寺町"
     }
   ],
 
