@@ -470,7 +470,7 @@ const DATA = {
         ["定休", "月・火（8/2は日曜のため営業）"],
         ["価格", "冷やしそうめん1,050円／にゅうめん900円"],
         ["予約", "不可"],
-        ["駐車", "<strong>専用なし</strong>（大神神社の参拝者駐車場を利用）"],
+        ["駐車", "**専用なし**（大神神社の参拝者駐車場を利用）"],
         ["おふさ観音から", "約25分"]
       ],
       notes: "デート感・ご当地感は候補中で随一だが、<strong>専用駐車場がなく神社の駐車場から歩く</strong>。猛暑日は負担になるので、暑さが厳しければ駐車場が広い三輪山本の方が安全。",
@@ -503,7 +503,7 @@ const DATA = {
         ["営業", "11:00〜16:00"],
         ["定休", "金曜（8/2は日曜のため営業）"],
         ["価格", "2,000〜2,999円（冷やし素麺三色 天ぷら付が人気）"],
-        ["予約", "<strong>8月は繁忙期のため予約不可</strong>"],
+        ["予約", "**8月は繁忙期のため予約不可**"],
         ["駐車", "無料30台"],
         ["おふさ観音から", "約25分"]
       ],
@@ -537,8 +537,8 @@ const DATA = {
         ["営業", "11:00〜14:30（ランチのみ）"],
         ["定休", "月・火（8/2は日曜のため営業）"],
         ["価格", "昼1,000〜1,999円／夜3,000〜3,999円（夜は事前予約必須）"],
-        ["予約", "可。<strong>箱寿司・蕎麦は予約推奨</strong>（売り切れあり）"],
-        ["駐車", "<strong>7台のみ</strong>"],
+        ["予約", "可。**箱寿司・蕎麦は予約推奨**（売り切れあり）"],
+        ["駐車", "**7台のみ**"],
         ["おふさ観音から", "約30〜35分（東へ・山道）"]
       ],
       notes: "<strong>点数は候補中の最高（3.73）で、車で行く価値も高い。</strong>ただし①駐車7台のみ ②14:30終了 ③予約推奨 ④おふさ観音から東へ30分超、と条件が厳しめ。<strong>ここへ行くと谷瀬は事実上不可能</strong>になるため、「谷瀬を外して食事を主役にする日（プランC）」向き。行くなら開店直後を狙う。",
@@ -604,7 +604,7 @@ const DATA = {
         ["営業", "日曜 11:00〜22:10（通し）"],
         ["価格", "昼1,000〜1,999円／夜2,000〜2,999円"],
         ["予約", "可（電話 070-9072-3979）"],
-        ["駐車", "<strong>なし</strong>（コインパーキング要）"],
+        ["駐車", "**なし**（コインパーキング要）"],
         ["八尾から", "約20km・30〜40分（西方向）"]
       ],
       notes: "<strong>今回の奈良ルートからは外れる。</strong>大阪市大正区で、八尾より約20km西。奈良からの帰路とは逆方向のため、当日の昼食・夕食には組み込みにくい。<strong>駐車場が無い</strong>点も車の旅程とは相性が悪い。姫路からの往路に寄る、または別日の候補として。",
@@ -874,6 +874,9 @@ const DATA = {
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// **囲むと太字** だけ使える軽量記法。先にエスケープしてから変換するので、
+// 生の < > を打たれても壊れない／XSSにもならない。esc() を通す表示はすべてこれを使う。
+const mdBold = (s) => esc(s).replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
 const mapsUrl = (q) => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
 // place_id があれば検索結果ではなく「その地点そのもの」を開く（同名店の取り違えを防ぐ）
 const placeMapsUrl = (p) => mapsUrl(p.maps || p.name) +
@@ -1084,7 +1087,7 @@ function linkPills(p) {
 }
 function renderCard(p) {
   const badges = (p.badges || []).map(b => `<span class="badge ${esc(b.cls)}">${esc(b.text)}</span>`).join("");
-  const meta = (p.meta || []).map(m => `<li><b>${esc(m[0])}</b><span>${esc(m[1])}</span></li>`).join("");
+  const meta = (p.meta || []).map(m => `<li><b>${esc(m[0])}</b><span>${mdBold(m[1])}</span></li>`).join("");
   return `<article class="card">
     ${renderImageBlock(p)}
     <div class="card-body">
@@ -1487,9 +1490,8 @@ function saveInfo() {
   localStorage.setItem(INFO_KEY, JSON.stringify({ v: INFO_VERSION, items: infoItems }));
   fbPush("info", infoItems);
 }
-// 本文は **囲むと太字** だけ使える軽量記法。
-// 先にHTMLをエスケープしてから変換するので、利用者が < > を打っても壊れない／XSSにもならない。
-const infoText = (s) => esc(s).replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+// 注意タブの本文も同じ軽量記法（定義は mdBold）。
+const infoText = mdBold;
 
 function renderInfo() {
   const box = $("#info-content"); if (!box) return;
